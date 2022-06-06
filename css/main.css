@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.cell {
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    border: 1px solid #888888;
+    text-align:center;
+}
+
+.wide-cell {
+    height: 50px;
+    width: 100px;
+    display:inline-block;
+    border: 1px solid #888888;
+    text-align:center;
+}
+
+.underline {
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    border-bottom: 1px solid #888888;
+    text-align:center;
+}
