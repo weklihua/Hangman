@@ -9,7 +9,7 @@ let secretWordArr, win, currentWord, secretWordArrExclusive
 
 /*----- cached element references -----*/
 const keyboard = document.getElementById('keyboard')
-const numberOfguessesLeft = document.getElementById('guesses-lefted')
+//const guessesBoard = document.getElementById('guesses-board')
 const currentGuessEl = document.getElementById('guesses-board')
 
 
@@ -21,6 +21,7 @@ init()
 
 function init(){
     secretWord = getSecretWord()
+    secretWordArr = secretWord.toUpperCase().split('')
     chosenLetters = []
     currentNumOfGuesses = 0
     currentGuess = ''
@@ -30,7 +31,6 @@ function init(){
     }
     generateKeyboard()
     generateLine()
-    secretWordArr = secretWord.toUpperCase().split('')
     
     secretWordArrExclusive = secretWordArr.map(function(value){
         if (value === ' '){
@@ -42,9 +42,6 @@ function init(){
 }
 
 function isWinning(){
-    // const secretWordArrExclusive = secretWordArr.filter(function(value){
-    //     return value != ' '
-    // })
     if(currentWord.toString() === secretWordArrExclusive.toString()) {
         win = true
     } else if (currentNumOfGuesses < MAX_GUESSES){
@@ -96,20 +93,20 @@ function handleClick(evt){
         updateCurrentGuess(evt.target.innerText)
         render()
     }
-    if (!(secretWordArr.includes(currentGuess))){
-        currentNumOfGuesses++
-    } else return
-}
+    // if (!(secretWordArr.includes(currentGuess))){
+    //     currentNumOfGuesses++
+    
+    //console.log(evt)
+    //evt.target.removeEventListener('click', handleClick)
+    }
+
 
 function updateCurrentGuess(letter) {
-    if (currentGuess.length < secretWord.length){
+   // if (currentGuess.length < secretWord.length){
         //currentGuess += letter
-        currentGuess = letter.toUpperCase()
+        currentGuess = letter
         console.log(currentGuess)
-        if (!(secretWordArr.includes(currentGuess))){
-            currentNumOfGuesses++
-        } else return
-    }
+    //}
 }
 
 function handleSpace() {
@@ -161,7 +158,8 @@ function render() {
            
          } 
         }
-    
+    if (!(secretWordArr.includes(currentGuess))){
+        currentNumOfGuesses++}
     isWinning()
     if (win === true){
         console.log('Congratulations!')
@@ -169,8 +167,7 @@ function render() {
     if (win === false){
         console.log('loser!')
     } 
-    numberOfguessesLeft.innerText = "Number of Guesses Left: " + (MAX_GUESSES - currentNumOfGuesses)
-
+    document.getElementById("guesses-lefted").innerText = "Number of Guesses Left: " + currentNumOfGuesses
 
 }
 
