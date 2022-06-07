@@ -1,11 +1,11 @@
 /*----- constants -----*/
-const MAX_GUESSES = 6
+const MAX_GUESSES = 5
 const ALLOWED_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 const GAME_WORD_BANK = ['Xenoblade Chronicles', 'Animal Crossing', 'Super Mario Odyssey', 'Splatoon', 'Monster Hunter Rise', 'Zelda', 'Fire Emblem', 'Super Mario Party', 'Octopath Traveler', 'Bravely Default']
 
 /*----- app's state (variables) -----*/
 let chosenLetters, currentNumOfGuesses, secretWord, currentGuess, totalLine
-let secretWordArr
+let secretWordArr, win, currentWord, secretWordArrExclusive
 
 /*----- cached element references -----*/
 const keyboard = document.getElementById('keyboard')
@@ -24,12 +24,39 @@ function init(){
     chosenLetters = []
     currentNumOfGuesses = 0
     currentGuess = ''
+    currentWord = []
+    for(i=0; i<secretWord.length; i++){
+        currentWord.push('')
+    }
     generateKeyboard()
     generateLine()
     secretWordArr = secretWord.toUpperCase().split('')
+    
+    secretWordArrExclusive = secretWordArr.map(function(value){
+        if (value === ' '){
+            return ''
+        }
+        return value
+    })
+    win = null
 }
-function generateLine(){
 
+function isWinning(){
+    // const secretWordArrExclusive = secretWordArr.filter(function(value){
+    //     return value != ' '
+    // })
+    if(currentWord.toString() === secretWordArrExclusive.toString()) {
+        win = true
+    } else if (currentNumOfGuesses < MAX_GUESSES){
+        return
+    } else if (currentNumOfGuesses >= MAX_GUESSES){
+        win = false
+    }
+}
+
+
+
+function generateLine(){
     for (i=0 ; i < secretWord.length ; i++){
         const underline = document.createElement('div')
         underline.innerText = " "
@@ -61,8 +88,7 @@ function generateKeyboard() {
 }
 
 function handleClick(evt){
-    let secretWordArr = secretWord.toUpperCase().split('')
-
+    //let secretWordArr = secretWord.toUpperCase().split('')
     if(evt.target.innerText === 'SPACE') {
         handleSpace()
         render()
@@ -70,13 +96,13 @@ function handleClick(evt){
         updateCurrentGuess(evt.target.innerText)
         render()
     }
-
     if (!(secretWordArr.includes(currentGuess))){
         currentNumOfGuesses++
+    
     //console.log(evt)
     //evt.target.removeEventListener('click', handleClick)
-
-}}
+    }
+}
 
 function updateCurrentGuess(letter) {
     if (currentGuess.length < secretWord.length){
@@ -131,8 +157,19 @@ function render() {
         if (currentGuess === secretWordArr[i]){
             const cell = document.getElementById(i)
             cell.innerText = secretWordArr[i]
+            currentWord[i] = cell.innerText
+           
          } 
         }
+    
+    isWinning()
+    if (win === true){
+        console.log('Congratulations!')
+    }
+    if (win === false){
+        console.log('loser!')
+    } 
+
 
 }
 
