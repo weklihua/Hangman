@@ -25,6 +25,7 @@
     display:inline-block;
     border-bottom: 1px solid #888888;
     text-align:center;
+    margin:10px;
 }
 .unclickable {
     background-color: gray;

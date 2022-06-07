@@ -1,7 +1,7 @@
 /*----- constants -----*/
 const MAX_GUESSES = 5
 const ALLOWED_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-const GAME_WORD_BANK = ['Xenoblade Chronicles', 'Animal Crossing', 'Super Mario Odyssey', 'Splatoon', 'Monster Hunter Rise', 'Zelda', 'Fire Emblem', 'Super Mario Party', 'Octopath Traveler', 'Bravely Default']
+const GAME_WORD_BANK = ['stars', 'earth', 'pluto', 'venus', 'astro', 'cosmo', 'comet', 'rings', 'space', 'world', 'alien', 'night', 'cloud', 'plant', 'orbit', 'giant']
 
 /*----- app's state (variables) -----*/
 let chosenLetters, currentNumOfGuesses, secretWord, currentGuess, totalLine
@@ -9,7 +9,7 @@ let secretWordArr, win, currentWord, secretWordArrExclusive
 
 /*----- cached element references -----*/
 const keyboard = document.getElementById('keyboard')
-//const guessesBoard = document.getElementById('guesses-board')
+const numberOfguessesLeft = document.getElementById('guesses-lefted')
 const currentGuessEl = document.getElementById('guesses-board')
 
 
@@ -98,17 +98,17 @@ function handleClick(evt){
     }
     if (!(secretWordArr.includes(currentGuess))){
         currentNumOfGuesses++
-    
-    //console.log(evt)
-    //evt.target.removeEventListener('click', handleClick)
-    }
+    } else return
 }
 
 function updateCurrentGuess(letter) {
     if (currentGuess.length < secretWord.length){
         //currentGuess += letter
-        currentGuess = letter
+        currentGuess = letter.toUpperCase()
         console.log(currentGuess)
+        if (!(secretWordArr.includes(currentGuess))){
+            currentNumOfGuesses++
+        } else return
     }
 }
 
@@ -169,6 +169,7 @@ function render() {
     if (win === false){
         console.log('loser!')
     } 
+    numberOfguessesLeft.innerText = "Number of Guesses Left: " + (MAX_GUESSES - currentNumOfGuesses)
 
 
 }
