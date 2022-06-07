@@ -11,35 +11,44 @@ let secretWordArr, win, currentWord, secretWordArrExclusive
 const keyboard = document.getElementById('keyboard')
 //const guessesBoard = document.getElementById('guesses-board')
 const currentGuessEl = document.getElementById('guesses-board')
-
+const resetButton = document.getElementById('button')
+const guessesLeftedEl = document.getElementById("guesses-lefted")
+const messageEl = document.getElementById("message")
 
 /*----- event listeners -----*/
-keyboard.addEventListener('click', handleClick)
+resetButton.addEventListener('click', init)
 
 
 /*----- functions -----*/
 init()
 
 function init(){
+    keyboard.addEventListener('click', handleClick)
     secretWord = getSecretWord()
     secretWordArr = secretWord.toUpperCase().split('')
     chosenLetters = []
     currentNumOfGuesses = 0
     currentGuess = ''
     currentWord = []
+    generateKeyboard()
+    generateLine()
+    getSecretWordArrExclusive()
+    win = null
+    guessesLeftedEl.innerText = "Number of Guesses Left: 6" 
+}
+
+function getCurrentWord(){
     for(i=0; i<secretWord.length; i++){
         currentWord.push('')
     }
-    generateKeyboard()
-    generateLine()
-    
+}
+function getSecretWordArrExclusive(){
     secretWordArrExclusive = secretWordArr.map(function(value){
         if (value === ' '){
             return ''
         }
         return value
-    })
-    win = null
+    })   
 }
 
 function isWinning(){
@@ -50,11 +59,23 @@ function isWinning(){
     } else if (currentNumOfGuesses >= MAX_GUESSES){
         win = false
     }
+    if (win === true){
+        //console.log('Congratulations!')
+        messageEl.innerText = 'Congratulations!'
+        keyboard.removeEventListener('click', handleClick)
+    } else if (win === false){
+        //console.log('loser!')
+        messageEl.innerText = 'Loser!'
+        keyboard.removeEventListener('click', handleClick)
+    } else if (win === null) {
+        return
+    }
 }
 
-
-
 function generateLine(){
+    while(currentGuessEl.firstElementChild) {
+        currentGuessEl.removeChild(currentGuessEl.firstElementChild)
+    }
     for (i=0 ; i < secretWord.length ; i++){
         const underline = document.createElement('div')
         underline.innerText = " "
@@ -69,21 +90,26 @@ function getSecretWord() {
     return GAME_WORD_BANK[randomInt]
 }
 
-
 function generateKeyboard() {
+    while(keyboard.firstElementChild) {
+        keyboard.removeChild(keyboard.firstElementChild)
+    }
+    //keyboard.removeChild('div')
     //generate letter keys
     ALLOWED_LETTERS.forEach(function(letter) {
         const cell = document.createElement('div')
         cell.innerText = letter.toUpperCase()
-        cell.classList.add('cell')  
-        cell.setAttribute("id", cell.innerText) ///////////////////////////
+        //cell.classList.add('cell')  
+        cell.setAttribute("class", "cell")
+        cell.setAttribute("id", cell.innerText) 
         keyboard.appendChild(cell)
     })
     //generates the space key
     const spaceCell = document.createElement('div')
     spaceCell.innerText='SPACE'
-    spaceCell.classList.add("wide-cell")
-    spaceCell.setAttribute("id", spaceCell.innerText)///////////////////////////
+    //spaceCell.classList.add("wide-cell")
+    spaceCell.setAttribute("class", "wide-cell")
+    spaceCell.setAttribute("id", spaceCell.innerText)
     keyboard.appendChild(spaceCell)
 }
 
@@ -95,19 +121,13 @@ function handleClick(evt){
     if(evt.target.innerText === 'SPACE') {
         handleSpace()
         render()
+        evt.target.classList.add("unclickable")
     } else {
         updateCurrentGuess(evt.target.innerText)
         render()
+        evt.target.classList.add("unclickable")
     }
-
-    // if (!(secretWordArr.includes(currentGuess))){
-    //     currentNumOfGuesses++
-    
-    //console.log(evt.target)
-    //evt.target.removeEventListener('click', handleClick)
-    }
-
-
+}
 
 function updateCurrentGuess(letter) {
    // if (currentGuess.length < secretWord.length){
@@ -127,39 +147,8 @@ function handleSpace() {
     }
 }
 
-
-// function render() {
-//     //const currentGuessArr = currentGuess.split('')
-//     const secretWordArr = secretWord.split('')
-//     for(i=0; i < secretWordArr.length; i++) {
-//         if (currentGuess === (secretWordArr[i].toUpperCase())){
-//             const cell = document.getElementById(i)
-//             cell.innerText = secretWordArr[i]
-//         } 
-//     } 
-// }
-// let keyboardList = document.querySelectorAll('.cell')
-// keyboardList.forEach(function(element){
-//     console.log(element.innerText)
-// })
-
 function render() {
-    //let secretWordArr = secretWord.toUpperCase().split('')
-    //const beyboardInnerText = keyboard.innerText
- 
-    // while (currentNumOfGuesses < MAX_GUESSES){
-    //     if (!secretWordArr.includes(currentGuess)){
-    //         currentNumOfGuesses = currentNumOfGuesses + 1
-    //     } 
-    //     if (secretWordArr.includes(currentGuess)) {
-    //         for(i=0; i < secretWordArr.length; i++) {
-    //             if (currentGuess === secretWordArr[i]){
-    //                 const cell = document.getElementById(i)
-    //                 cell.innerText = secretWordArr[i]
-    //              } 
-    //             }
-    //     }
-    // }
+    
     for(i=0; i < secretWordArr.length; i++) {
         if (currentGuess === secretWordArr[i]){
             const cell = document.getElementById(i)
@@ -170,37 +159,23 @@ function render() {
         }
     if (!(secretWordArr.includes(currentGuess))){
         currentNumOfGuesses++
-        // document.getElementById(currentGuess).removeEventListener('click', handleClick)/////
     }
+
     document.getElementById(currentGuess).removeEventListener('click', handleClick)
 
-    isWinning()
-    if (win === true){
-        console.log('Congratulations!')
+    if(MAX_GUESSES >= currentNumOfGuesses){
+        guessesLeftedEl.innerText = "Number of Guesses Left: " + (MAX_GUESSES - currentNumOfGuesses)
     }
-    if (win === false){
-        console.log('loser!')
-    } 
-    document.getElementById("guesses-lefted").innerText = "Number of Guesses Left: " + (MAX_GUESSES - currentNumOfGuesses)
-
+    isWinning()
+    // if (win === true){
+    //     //console.log('Congratulations!')
+    //     messageEl.innerText = 'Congratulations!'
+    //     keyboard.removeEventListener('click', handleClick)
+    // } else if (win === false){
+    //     //console.log('loser!')
+    //     messageEl.innerText = 'Loser!'
+    //     keyboard.removeEventListener('click', handleClick)
+    // } else if (win === null) {
+    //     return
+    // }
 }
-
-
-
-
-
-         //else if (currentGuess !== (secretWordArr[i].toUpperCase())) {
-        //     let keyboardList = document.querySelectorAll('.cell')
-        //     keyboardList.forEach(function(element){
-        //         if(element.innerText === currentGuess.toUpperCase()){
-        //             element.setAttribute("class", "unclickable")
-        //         } 
-            
-        //      })
-        
-
-// let secretWordEl = document.createElement('div')
-// for(i=0; i < secretWord.length; i++) {
-//     const cell = document.getElementById(i)
-//     cell.innerText = currentGuessArr[i]
-// }
