@@ -1,5 +1,5 @@
 /*----- constants -----*/
-const MAX_GUESSES = 5
+const MAX_GUESSES = 6
 const ALLOWED_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 const GAME_WORD_BANK = ['stars', 'earth', 'pluto', 'venus', 'astro', 'cosmo', 'comet', 'rings', 'space', 'world', 'alien', 'night', 'cloud', 'plant', 'orbit', 'giant']
 
@@ -15,6 +15,7 @@ const currentGuessEl = document.getElementById('guesses-board')
 
 /*----- event listeners -----*/
 keyboard.addEventListener('click', handleClick)
+
 
 /*----- functions -----*/
 init()
@@ -74,17 +75,22 @@ function generateKeyboard() {
     ALLOWED_LETTERS.forEach(function(letter) {
         const cell = document.createElement('div')
         cell.innerText = letter.toUpperCase()
-        cell.classList.add('cell')
+        cell.classList.add('cell')  
+        cell.setAttribute("id", cell.innerText) ///////////////////////////
         keyboard.appendChild(cell)
     })
     //generates the space key
     const spaceCell = document.createElement('div')
     spaceCell.innerText='SPACE'
     spaceCell.classList.add("wide-cell")
+    spaceCell.setAttribute("id", spaceCell.innerText)///////////////////////////
     keyboard.appendChild(spaceCell)
 }
 
 function handleClick(evt){
+    if (chosenLetters.includes(evt.target.innerText) ){
+        return
+    }
     //let secretWordArr = secretWord.toUpperCase().split('')
     if(evt.target.innerText === 'SPACE') {
         handleSpace()
@@ -93,12 +99,14 @@ function handleClick(evt){
         updateCurrentGuess(evt.target.innerText)
         render()
     }
+
     // if (!(secretWordArr.includes(currentGuess))){
     //     currentNumOfGuesses++
     
-    //console.log(evt)
+    //console.log(evt.target)
     //evt.target.removeEventListener('click', handleClick)
     }
+
 
 
 function updateCurrentGuess(letter) {
@@ -106,6 +114,7 @@ function updateCurrentGuess(letter) {
         //currentGuess += letter
         currentGuess = letter
         console.log(currentGuess)
+        chosenLetters.push(currentGuess)
     //}
 }
 
@@ -114,6 +123,7 @@ function handleSpace() {
         //currentGuess += " "
         currentGuess = " "
         console.log(currentGuess)
+        chosenLetters.push(currentGuess)
     }
 }
 
@@ -159,7 +169,11 @@ function render() {
          } 
         }
     if (!(secretWordArr.includes(currentGuess))){
-        currentNumOfGuesses++}
+        currentNumOfGuesses++
+        // document.getElementById(currentGuess).removeEventListener('click', handleClick)/////
+    }
+    document.getElementById(currentGuess).removeEventListener('click', handleClick)
+
     isWinning()
     if (win === true){
         console.log('Congratulations!')
@@ -167,7 +181,7 @@ function render() {
     if (win === false){
         console.log('loser!')
     } 
-    document.getElementById("guesses-lefted").innerText = "Number of Guesses Left: " + currentNumOfGuesses
+    document.getElementById("guesses-lefted").innerText = "Number of Guesses Left: " + (MAX_GUESSES - currentNumOfGuesses)
 
 }
 
