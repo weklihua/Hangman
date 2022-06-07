@@ -5,7 +5,7 @@ const GAME_WORD_BANK = ['Xenoblade Chronicles', 'Animal Crossing', 'Super Mario 
 
 /*----- app's state (variables) -----*/
 let chosenLetters, currentNumOfGuesses, secretWord, currentGuess, totalLine
-
+let secretWordArr
 
 /*----- cached element references -----*/
 const keyboard = document.getElementById('keyboard')
@@ -26,6 +26,7 @@ function init(){
     currentGuess = ''
     generateKeyboard()
     generateLine()
+    secretWordArr = secretWord.toUpperCase().split('')
 }
 function generateLine(){
 
@@ -60,6 +61,7 @@ function generateKeyboard() {
 }
 
 function handleClick(evt){
+    let secretWordArr = secretWord.toUpperCase().split('')
 
     if(evt.target.innerText === 'SPACE') {
         handleSpace()
@@ -68,7 +70,13 @@ function handleClick(evt){
         updateCurrentGuess(evt.target.innerText)
         render()
     }
-}
+
+    if (!(secretWordArr.includes(currentGuess))){
+        currentNumOfGuesses++
+    //console.log(evt)
+    //evt.target.removeEventListener('click', handleClick)
+
+}}
 
 function updateCurrentGuess(letter) {
     if (currentGuess.length < secretWord.length){
@@ -103,18 +111,45 @@ function handleSpace() {
 // })
 
 function render() {
-    //const currentGuessArr = currentGuess.split('')
-    const secretWordArr = secretWord.split('')
-    const beyboardInnerText = keyboard.innerText
+    //let secretWordArr = secretWord.toUpperCase().split('')
+    //const beyboardInnerText = keyboard.innerText
+ 
+    // while (currentNumOfGuesses < MAX_GUESSES){
+    //     if (!secretWordArr.includes(currentGuess)){
+    //         currentNumOfGuesses = currentNumOfGuesses + 1
+    //     } 
+    //     if (secretWordArr.includes(currentGuess)) {
+    //         for(i=0; i < secretWordArr.length; i++) {
+    //             if (currentGuess === secretWordArr[i]){
+    //                 const cell = document.getElementById(i)
+    //                 cell.innerText = secretWordArr[i]
+    //              } 
+    //             }
+    //     }
+    // }
     for(i=0; i < secretWordArr.length; i++) {
-        if (currentGuess === (secretWordArr[i].toUpperCase())){
+        if (currentGuess === secretWordArr[i]){
             const cell = document.getElementById(i)
             cell.innerText = secretWordArr[i]
-        } else {
-            
+         } 
         }
-    } 
+
 }
+
+
+
+
+
+         //else if (currentGuess !== (secretWordArr[i].toUpperCase())) {
+        //     let keyboardList = document.querySelectorAll('.cell')
+        //     keyboardList.forEach(function(element){
+        //         if(element.innerText === currentGuess.toUpperCase()){
+        //             element.setAttribute("class", "unclickable")
+        //         } 
+            
+        //      })
+        
+
 // let secretWordEl = document.createElement('div')
 // for(i=0; i < secretWord.length; i++) {
 //     const cell = document.getElementById(i)

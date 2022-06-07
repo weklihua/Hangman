@@ -26,3 +26,11 @@
     border-bottom: 1px solid #888888;
     text-align:center;
 }
+.unclickable {
+    background-color: gray;
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    border: 1px solid #888888;
+    text-align:center;
+}
