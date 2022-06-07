@@ -5,6 +5,10 @@
     
     
 }
+body {
+    margin: 5px;
+    padding: 5px;
+}
 .cell {
     height: 50px;
     width: 50px;
@@ -41,20 +45,30 @@
     border: 1px solid #888888;
     text-align:center;
 }
+.unclickableSpace{
+    background-color: rgb(196, 196, 196);
+    height: 50px;
+    width: 100px;
+    display:inline-block;
+    border: 1px solid #888888;
+    text-align:center;
+}
 .container {
     background-color: rgb(229, 245, 250);
 }
 
 img{
-    block-size: 150%;
+    block-size: 120%;
 }
 #guesses-board {
     display: flex;
     align-items: center;
 }
-#message {
-    display: flex;
-    align-items: center;
-    margin: 10px;
-    border: 1px solid #888888;
+
+
+
+#message{
+    color:rgb(98, 93, 93);
+    text-align: center;
+    
 }

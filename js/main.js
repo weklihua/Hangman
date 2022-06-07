@@ -1,7 +1,8 @@
 /*----- constants -----*/
 const MAX_GUESSES = 6
 const ALLOWED_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-const GAME_WORD_BANK = ['stars', 'earth', 'pluto', 'venus', 'astro', 'cosmo', 'comet', 'rings', 'space', 'world', 'alien', 'night', 'cloud', 'plant', 'orbit', 'giant']
+const GAME_WORD_BANK = ['alligator', 'bear', 'cheetah', 'deer', 'elephant', 'fox', 'giraffe',
+'hippo', 'jaguar', 'kangaroo', 'lion', 'monkey', 'otter', 'penguin', 'rabbit', 'shark', 'tiger', 'wolf', 'yak', 'zebra', 'bee']
 
 /*----- app's state (variables) -----*/
 let chosenLetters, currentNumOfGuesses, secretWord, currentGuess, totalLine
@@ -35,9 +36,12 @@ function init(){
     generateKeyboard()
     getSecretWordArrExclusive()
     win = null
-    guessesLeftedEl.innerText = "Number of Guesses Left: 6" 
+    //guessesLeftedEl.innerText = "Number of Guesses Left: 6" 
     imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/0.jpeg?raw=true")
-    messageEl.innerText = " "
+    messageEl.innerText = "Make a guess"
+    document.getElementById('alert').setAttribute('class', "alert alert-info")
+    messageEl.style.color = 'rgb(98, 93, 93)'
+
 }
 
 function getCurrentWord(){
@@ -64,11 +68,15 @@ function isWinning(){
     }
     if (win === true){
         //console.log('Congratulations!')
-        messageEl.innerText = 'Congratulations!'
+        messageEl.innerText = 'Congratulations, you won!'
+        messageEl.style.color = 'black'
+        document.getElementById('alert').setAttribute('class', "alert alert-success")
         keyboard.removeEventListener('click', handleClick)
     } else if (win === false){
         //console.log('loser!')
-        messageEl.innerText = 'Loser!'
+        messageEl.innerText = 'You lost, try again!'
+        messageEl.style.color = 'black'
+        document.getElementById('alert').setAttribute('class', "alert alert-danger")
         keyboard.removeEventListener('click', handleClick)
     } else if (win === null) {
         return
@@ -124,7 +132,7 @@ function handleClick(evt){
     if(evt.target.innerText === 'SPACE') {
         handleSpace()
         render()
-        evt.target.classList.add("unclickable")
+        evt.target.classList.add("unclickableSpace")
     } else {
         //evt.target.innerText
         updateCurrentGuess(evt.target.innerText)
@@ -137,7 +145,7 @@ function updateCurrentGuess(letter) {
    // if (currentGuess.length < secretWord.length){
         //currentGuess += letter
         currentGuess = letter
-        console.log(currentGuess)
+        //console.log(currentGuess)
         chosenLetters.push(currentGuess)
     //}
 }
@@ -146,7 +154,7 @@ function handleSpace() {
     if (currentGuess.length < secretWord.length){
         //currentGuess += " "
         currentGuess = " "
-        console.log(currentGuess)
+        //console.log(currentGuess)
         chosenLetters.push(currentGuess)
     }
 }
@@ -164,26 +172,14 @@ function render() {
     if (!(secretWordArr.includes(currentGuess))){
         currentNumOfGuesses++
     }
-
-    document.getElementById(currentGuess).removeEventListener('click', handleClick)
-
-    if(MAX_GUESSES >= currentNumOfGuesses){
-        guessesLeftedEl.innerText = "Number of Guesses Left: " + (MAX_GUESSES - currentNumOfGuesses)
-    }
-    isWinning()
-    // if (win === true){
-    //     //console.log('Congratulations!')
-    //     messageEl.innerText = 'Congratulations!'
-    //     keyboard.removeEventListener('click', handleClick)
-    // } else if (win === false){
-    //     //console.log('loser!')
-    //     messageEl.innerText = 'Loser!'
-    //     keyboard.removeEventListener('click', handleClick)
-    // } else if (win === null) {
-    //     return
-    // }
     getImage()
 
+    //document.getElementById(currentGuess).removeEventListener('click', handleClick)
+
+    // if(MAX_GUESSES >= currentNumOfGuesses){
+    //     guessesLeftedEl.innerText = "Number of Guesses Left: " + (MAX_GUESSES - currentNumOfGuesses)
+    // }
+    isWinning()
 }
 function getImage(){
     if (currentNumOfGuesses === 0){
