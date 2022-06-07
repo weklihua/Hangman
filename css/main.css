@@ -1,13 +1,17 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 0px;
+    
+    
 }
 .cell {
     height: 50px;
     width: 50px;
     display:inline-block;
     border: 1px solid #888888;
+    border-radius: 30%;
+    margin: 1px;
     text-align:center;
 }
 
@@ -16,10 +20,12 @@
     width: 100px;
     display:inline-block;
     border: 1px solid #888888;
+    border-radius: 15%;
     text-align:center;
 }
 
 .underline {
+    box-sizing: border-box;
     height: 50px;
     width: 50px;
     display:inline-block;
@@ -28,10 +34,27 @@
     margin:10px;
 }
 .unclickable {
-    background-color: rgb(118, 113, 113);
+    background-color: rgb(196, 196, 196);
     height: 50px;
     width: 50px;
     display:inline-block;
     border: 1px solid #888888;
     text-align:center;
+}
+.container {
+    background-color: rgb(229, 245, 250);
+}
+
+img{
+    block-size: 150%;
+}
+#guesses-board {
+    display: flex;
+    align-items: center;
+}
+#message {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    border: 1px solid #888888;
 }

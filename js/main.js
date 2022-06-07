@@ -31,11 +31,13 @@ function init(){
     currentNumOfGuesses = 0
     currentGuess = ''
     currentWord = []
-    generateKeyboard()
     generateLine()
+    generateKeyboard()
     getSecretWordArrExclusive()
     win = null
     guessesLeftedEl.innerText = "Number of Guesses Left: 6" 
+    imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/0.jpeg?raw=true")
+    messageEl.innerText = " "
 }
 
 function getCurrentWord(){
@@ -79,10 +81,10 @@ function generateLine(){
     }
     for (i=0 ; i < secretWord.length ; i++){
         const underline = document.createElement('div')
-        underline.innerText = " "
         underline.classList.add('underline')
         currentGuessEl.appendChild(underline)
         underline.setAttribute("id", i)
+        underline.innerText = " "
     }
 }
 
@@ -124,6 +126,7 @@ function handleClick(evt){
         render()
         evt.target.classList.add("unclickable")
     } else {
+        //evt.target.innerText
         updateCurrentGuess(evt.target.innerText)
         render()
         evt.target.classList.add("unclickable")
@@ -149,7 +152,7 @@ function handleSpace() {
 }
 
 function render() {
-    
+    //update guess board:
     for(i=0; i < secretWordArr.length; i++) {
         if (currentGuess === secretWordArr[i]){
             const cell = document.getElementById(i)
@@ -183,17 +186,26 @@ function render() {
 
 }
 function getImage(){
-    if (currentNumOfGuesses === 1){
-        imageEl.setAttribute("src", "https://github.com/simonjsuh/Vanilla-Javascript-Hangman-Game/blob/master/images/1.jpg?raw=true")
+    if (currentNumOfGuesses === 0){
+        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/0.jpeg?raw=true")
+    } else if (currentNumOfGuesses === 1){
+        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/1.jpeg?raw=true")
     } else if (currentNumOfGuesses === 2){
-        imageEl.setAttribute("src", "https://github.com/simonjsuh/Vanilla-Javascript-Hangman-Game/blob/master/images/2.jpg?raw=true")
+        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/2.jpeg?raw=true")
     } else if (currentNumOfGuesses === 3){
-        imageEl.setAttribute("src", "https://github.com/simonjsuh/Vanilla-Javascript-Hangman-Game/blob/master/images/3.jpg?raw=true")
+        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/3.jpeg?raw=true")
     } else if (currentNumOfGuesses === 4){
-        imageEl.setAttribute("src", "https://github.com/simonjsuh/Vanilla-Javascript-Hangman-Game/blob/master/images/4.jpg?raw=true")
+        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/4.jpeg?raw=true")
     } else if (currentNumOfGuesses === 5){
-        imageEl.setAttribute("src", "")
+        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/5.jpeg?raw=true")
     } else if (currentNumOfGuesses === 6){
-        imageEl.setAttribute("src", "")
+        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/6.jpeg?raw=true")
     }
 }
+
+// document.createElement('div').classList.add('alert alert-success').setAttribute('role', 'alert')
+// <div class="alert alert-success" role="alert">
+// A simple success alert—check it out!
+// </div>
+
+// document.querySelector('.row').appendChild(document.createElement('div').setAttribute("class", "alert alert-success").setAttribute('role', 'alert')) 
