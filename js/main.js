@@ -14,6 +14,7 @@ const currentGuessEl = document.getElementById('guesses-board')
 const resetButton = document.getElementById('button')
 const guessesLeftedEl = document.getElementById("guesses-lefted")
 const messageEl = document.getElementById("message")
+const imageEl = document.querySelector("img")
 
 /*----- event listeners -----*/
 resetButton.addEventListener('click', init)
@@ -178,4 +179,21 @@ function render() {
     // } else if (win === null) {
     //     return
     // }
+    getImage()
+
+}
+function getImage(){
+    if (currentNumOfGuesses === 1){
+        imageEl.setAttribute("src", "https://github.com/simonjsuh/Vanilla-Javascript-Hangman-Game/blob/master/images/1.jpg?raw=true")
+    } else if (currentNumOfGuesses === 2){
+        imageEl.setAttribute("src", "https://github.com/simonjsuh/Vanilla-Javascript-Hangman-Game/blob/master/images/2.jpg?raw=true")
+    } else if (currentNumOfGuesses === 3){
+        imageEl.setAttribute("src", "https://github.com/simonjsuh/Vanilla-Javascript-Hangman-Game/blob/master/images/3.jpg?raw=true")
+    } else if (currentNumOfGuesses === 4){
+        imageEl.setAttribute("src", "https://github.com/simonjsuh/Vanilla-Javascript-Hangman-Game/blob/master/images/4.jpg?raw=true")
+    } else if (currentNumOfGuesses === 5){
+        imageEl.setAttribute("src", "")
+    } else if (currentNumOfGuesses === 6){
+        imageEl.setAttribute("src", "")
+    }
 }
