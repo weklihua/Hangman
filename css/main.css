@@ -1,83 +1,87 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0px;
-    
-    
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0px;
 }
 body {
-    margin: 5px;
-    padding: 5px;
+  margin: 5px;
+  padding: 5px;
 }
 .cell {
-    height: 50px;
-    width: 50px;
-    display:inline-block;
-    border: 1px solid #888888;
-    border-radius: 30%;
-    margin: 1px;
-    text-align:center;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  border: 1px solid #888888;
+  border-radius: 30%;
+  margin: 1px;
+  text-align: center;
+}
+.cell:hover {
+    background-color: antiquewhite;
 }
 
 .wide-cell {
-    height: 50px;
-    width: 100px;
-    display:inline-block;
-    border: 1px solid #888888;
-    border-radius: 15%;
-    text-align:center;
+  height: 50px;
+  width: 100px;
+  display: inline-block;
+  border: 1px solid #888888;
+  border-radius: 15%;
+  text-align: center;
 }
-
+.wide-cell:hover {
+    background-color: antiquewhite;
+}
+.unclickable:hover {
+    background-color: rgb(196, 196, 196);
+}
+.unclickableSpace:hover {
+    background-color: rgb(196, 196, 196);
+}
 .underline {
-    box-sizing: border-box;
-    height: 50px;
-    width: 50px;
-    display:inline-block;
-    border-bottom: 1px solid #888888;
-    text-align:center;
-    margin:10px;
+  box-sizing: border-box;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  border-bottom: 1px solid #888888;
+  text-align: center;
+  margin: 10px;
 }
 .unclickable {
-    background-color: rgb(196, 196, 196);
-    height: 50px;
-    width: 50px;
-    display:inline-block;
-    border: 1px solid #888888;
-    text-align:center;
+  background-color: rgb(196, 196, 196);
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  border: 1px solid #888888;
+  text-align: center;
 }
-.unclickableSpace{
-    background-color: rgb(196, 196, 196);
-    height: 50px;
-    width: 100px;
-    display:inline-block;
-    border: 1px solid #888888;
-    text-align:center;
+.unclickableSpace {
+  background-color: rgb(196, 196, 196);
+  height: 50px;
+  width: 100px;
+  display: inline-block;
+  border: 1px solid #888888;
+  text-align: center;
 }
 .container {
-    background-color: rgb(229, 245, 250);
+  background-color: rgb(229, 245, 250);
 }
 
-img{
-    block-size: 120%;
+img {
+  block-size: 120%;
 }
 #guesses-board {
-    display: flex;
-    align-items: center;
-    
+  display: flex;
+  align-items: center;
 }
 
-
-
-#message{
-    color:rgb(98, 93, 93);
-    text-align: center;
-    
+#message {
+  color: rgb(98, 93, 93);
+  text-align: center;
 }
-
-/* button {
-    display:inline-block;
-} */
 
 #answer {
-    text-align: right;
+  text-align: right;
+}
+#keyboard:hover {
+    cursor: pointer;
 }

@@ -18,7 +18,6 @@ const imageEl = document.querySelector("img")
 /*----- event listeners -----*/
 resetButton.addEventListener('click', init)
 
-
 /*----- functions -----*/
 init()
 
@@ -64,13 +63,13 @@ function isWinning(){
         win = false
     }
     if (win === true){
-        messageEl.innerText = 'Congratulations , you won!'
+        messageEl.innerText = 'Congratulations ,  you won!'
         document.getElementById('alert').setAttribute('class', "alert alert-success")
         keyboard.removeEventListener('click', handleClick)
         document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
 
     } else if (win === false){
-        messageEl.innerText = 'You lost, try again!'
+        messageEl.innerText = 'You lost ,  try again!'
         document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
         document.getElementById('alert').setAttribute('class', "alert alert-danger")
         keyboard.removeEventListener('click', handleClick)
