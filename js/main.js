@@ -12,7 +12,7 @@ let secretWordArr, win, currentWord, secretWordArrExclusive
 const keyboard = document.getElementById('keyboard')
 //const guessesBoard = document.getElementById('guesses-board')
 const currentGuessEl = document.getElementById('guesses-board')
-const resetButton = document.getElementById('button')
+const resetButton = document.querySelector('button')
 const guessesLeftedEl = document.getElementById("guesses-lefted")
 const messageEl = document.getElementById("message")
 const imageEl = document.querySelector("img")
