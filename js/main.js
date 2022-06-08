@@ -75,6 +75,7 @@ function isWinning(){
     } else if (win === false){
         //console.log('loser!')
         messageEl.innerText = 'You lost, try again!'
+        document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
         //messageEl.style.color = 'black'
         document.getElementById('alert').setAttribute('class', "alert alert-danger")
         keyboard.removeEventListener('click', handleClick)
