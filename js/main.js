@@ -5,12 +5,10 @@ const GAME_WORD_BANK = ['alligator', 'bear', 'cheetah', 'deer', 'elephant', 'fox
 'hippo', 'jaguar', 'kangaroo', 'lion', 'monkey', 'otter', 'penguin', 'rabbit', 'shark', 'tiger', 'wolf', 'yak', 'zebra', 'bee', 'octopus', 'dolphin', 'dog', 'cat', 'snake', 'ant', 'camel', 'goose', 'beetle', 'squid', 'spider', 'whale', 'mice', 'butterfly', 'chicken', 'chimpanzee', 'lizard', 'seal']
 
 /*----- app's state (variables) -----*/
-let chosenLetters, currentNumOfGuesses, secretWord, currentGuess, totalLine
-let secretWordArr, win, currentWord, secretWordArrExclusive
+let chosenLetters, currentNumOfGuesses, secretWord, currentGuess, totalLine, secretWordArr, win, currentWord, secretWordArrExclusive
 
 /*----- cached element references -----*/
 const keyboard = document.getElementById('keyboard')
-//const guessesBoard = document.getElementById('guesses-board')
 const currentGuessEl = document.getElementById('guesses-board')
 const resetButton = document.querySelector('button')
 const guessesLeftedEl = document.getElementById("guesses-lefted")
@@ -36,14 +34,11 @@ function init(){
     generateKeyboard()
     getSecretWordArrExclusive()
     win = null
-    //guessesLeftedEl.innerText = "Number of Guesses Left: 6" 
     imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/0.jpeg?raw=true")
     messageEl.innerText = "Guess what animal I am!"
     document.getElementById('alert').setAttribute('class', "alert alert-info")
     messageEl.style.color = 'rgb(98, 93, 93)'
     document.getElementById('answer').innerHTML = '&nbsp'
-
-
 }
 
 function getCurrentWord(){
@@ -69,18 +64,14 @@ function isWinning(){
         win = false
     }
     if (win === true){
-        //console.log('Congratulations!')
         messageEl.innerText = 'Congratulations , you won!'
-        //messageEl.style.color = 'black'
         document.getElementById('alert').setAttribute('class', "alert alert-success")
         keyboard.removeEventListener('click', handleClick)
         document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
 
     } else if (win === false){
-        //console.log('loser!')
         messageEl.innerText = 'You lost, try again!'
         document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
-        //messageEl.style.color = 'black'
         document.getElementById('alert').setAttribute('class', "alert alert-danger")
         keyboard.removeEventListener('click', handleClick)
     } else if (win === null) {
@@ -110,7 +101,6 @@ function generateKeyboard() {
     while(keyboard.firstElementChild) {
         keyboard.removeChild(keyboard.firstElementChild)
     }
-    //keyboard.removeChild('div')
     //generate letter keys
     ALLOWED_LETTERS.forEach(function(letter) {
         const cell = document.createElement('div')
@@ -123,25 +113,20 @@ function generateKeyboard() {
     //generates the space key
     const spaceCell = document.createElement('div')
     spaceCell.innerText='SPACE'
-    //spaceCell.classList.add("wide-cell")
     spaceCell.setAttribute("class", "wide-cell")
     spaceCell.setAttribute("id", spaceCell.innerText)
     keyboard.appendChild(spaceCell)
 }
 
 function handleClick(evt){
-    //console.log(evt.target.getAttribute('id'))
-
     if (chosenLetters.includes(evt.target.innerText)){
         return
     }
-    //let secretWordArr = secretWord.toUpperCase().split('')
     if(evt.target.innerText === 'SPACE') {
         handleSpace()
         render()
         evt.target.classList.add("unclickableSpace")
     } else if (evt.target.getAttribute('id') !== 'keyboard' ) {
-        //evt.target.innerText
         updateCurrentGuess(evt.target.innerText)
         render()
         evt.target.classList.add("unclickable")
@@ -149,19 +134,13 @@ function handleClick(evt){
 }
 
 function updateCurrentGuess(letter) {
-   // if (currentGuess.length < secretWord.length){
-        //currentGuess += letter
-        currentGuess = letter
-        //console.log(currentGuess)
-        chosenLetters.push(currentGuess)
-    //}
+    currentGuess = letter
+    chosenLetters.push(currentGuess)
 }
 
 function handleSpace() {
     if (currentGuess.length < secretWord.length){
-        //currentGuess += " "
         currentGuess = " "
-        //console.log(currentGuess)
         chosenLetters.push(currentGuess)
     }
 }
@@ -173,19 +152,12 @@ function render() {
             const cell = document.getElementById(i)
             cell.innerText = secretWordArr[i]
             currentWord[i] = cell.innerText
-           
          } 
         }
     if (!(secretWordArr.includes(currentGuess))){
         currentNumOfGuesses++
     }
     getImage()
-
-    //document.getElementById(currentGuess).removeEventListener('click', handleClick)
-
-    // if(MAX_GUESSES >= currentNumOfGuesses){
-    //     guessesLeftedEl.innerText = "Number of Guesses Left: " + (MAX_GUESSES - currentNumOfGuesses)
-    // }
     isWinning()
 }
 function getImage(){
@@ -206,9 +178,3 @@ function getImage(){
     }
 }
 
-// document.createElement('div').classList.add('alert alert-success').setAttribute('role', 'alert')
-// <div class="alert alert-success" role="alert">
-// A simple success alert—check it out!
-// </div>
-
-// document.querySelector('.row').appendChild(document.createElement('div').setAttribute("class", "alert alert-success").setAttribute('role', 'alert')) 
