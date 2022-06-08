@@ -2,7 +2,7 @@
 const MAX_GUESSES = 6
 const ALLOWED_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 const GAME_WORD_BANK = ['alligator', 'bear', 'cheetah', 'deer', 'elephant', 'fox', 'giraffe',
-'hippo', 'jaguar', 'kangaroo', 'lion', 'monkey', 'otter', 'penguin', 'rabbit', 'shark', 'tiger', 'wolf', 'yak', 'zebra', 'bee', 'octopus']
+'hippo', 'jaguar', 'kangaroo', 'lion', 'monkey', 'otter', 'penguin', 'rabbit', 'shark', 'tiger', 'wolf', 'yak', 'zebra', 'bee', 'octopus', 'dolphin', 'dog', 'cat', 'snake', 'ant', 'camel', 'goose', 'beetle', 'squid', 'spider', 'whale', 'mice', 'butterfly', 'chicken', 'chimpanzee', 'lizard', 'seal']
 
 /*----- app's state (variables) -----*/
 let chosenLetters, currentNumOfGuesses, secretWord, currentGuess, totalLine
@@ -125,7 +125,9 @@ function generateKeyboard() {
 }
 
 function handleClick(evt){
-    if (chosenLetters.includes(evt.target.innerText) ){
+    //console.log(evt.target.getAttribute('id'))
+
+    if (chosenLetters.includes(evt.target.innerText)){
         return
     }
     //let secretWordArr = secretWord.toUpperCase().split('')
@@ -133,7 +135,7 @@ function handleClick(evt){
         handleSpace()
         render()
         evt.target.classList.add("unclickableSpace")
-    } else {
+    } else if (evt.target.getAttribute('id') !== 'keyboard' ) {
         //evt.target.innerText
         updateCurrentGuess(evt.target.innerText)
         render()
