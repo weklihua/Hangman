@@ -77,3 +77,7 @@ img{
 /* button {
     display:inline-block;
 } */
+
+#answer {
+    text-align: right;
+}
