@@ -1,8 +1,7 @@
 /*----- constants -----*/
 const MAX_GUESSES = 6
 const ALLOWED_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-const GAME_WORD_BANK = ['alligator', 'bear', 'cheetah', 'deer', 'elephant', 'fox', 'giraffe',
-'hippo', 'jaguar', 'kangaroo', 'lion', 'monkey', 'otter', 'penguin', 'rabbit', 'shark', 'tiger', 'wolf', 'yak', 'zebra', 'bee', 'octopus', 'dolphin', 'dog', 'cat', 'snake', 'ant', 'camel', 'goose', 'beetle', 'squid', 'spider', 'whale', 'mice', 'butterfly', 'chicken', 'chimpanzee', 'lizard', 'seal']
+const GAME_WORD_BANK = ['alligator', 'bear', 'cheetah', 'deer', 'elephant', 'fox', 'giraffe', 'hippo', 'jaguar', 'kangaroo', 'lion', 'monkey', 'otter', 'penguin', 'rabbit', 'shark', 'tiger', 'wolf', 'yak', 'zebra', 'bee', 'octopus', 'dolphin', 'dog', 'cat', 'snake', 'ant', 'camel', 'goose', 'beetle', 'squid', 'spider', 'whale', 'mice', 'butterfly', 'chicken', 'chimpanzee', 'lizard', 'seal']
 
 /*----- app's state (variables) -----*/
 let chosenLetters, currentNumOfGuesses, secretWord, currentGuess, totalLine, secretWordArr, win, currentWord, secretWordArrExclusive
@@ -33,11 +32,12 @@ function init(){
     generateKeyboard()
     getSecretWordArrExclusive()
     win = null
-    imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/0.jpeg?raw=true")
+    imageEl.setAttribute("src", "./image/0.jpeg")
     messageEl.innerText = "Guess what animal I am!"
     document.getElementById('alert').setAttribute('class', "alert alert-info")
     messageEl.style.color = 'rgb(98, 93, 93)'
     document.getElementById('answer').innerHTML = '&nbsp'
+    //resetButton.innerText = 'RESET GAME'
 }
 
 function getCurrentWord(){
@@ -53,7 +53,6 @@ function getSecretWordArrExclusive(){
         return value
     })   
 }
-
 function isWinning(){
     if(currentWord.toString() === secretWordArrExclusive.toString()) {
         win = true
@@ -77,7 +76,6 @@ function isWinning(){
         return
     }
 }
-
 function generateLine(){
     while(currentGuessEl.firstElementChild) {
         currentGuessEl.removeChild(currentGuessEl.firstElementChild)
@@ -90,7 +88,6 @@ function generateLine(){
         underline.innerText = " "
     }
 }
-
 function getSecretWord() {
     const randomInt = Math.floor(Math.random() * GAME_WORD_BANK.length)
     return GAME_WORD_BANK[randomInt]
@@ -161,19 +158,19 @@ function render() {
 }
 function getImage(){
     if (currentNumOfGuesses === 0){
-        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/0.jpeg?raw=true")
+        imageEl.setAttribute("src", "./image/0.jpeg")
     } else if (currentNumOfGuesses === 1){
-        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/1.jpeg?raw=true")
+        imageEl.setAttribute("src", "./image/1.jpeg")
     } else if (currentNumOfGuesses === 2){
-        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/2.jpeg?raw=true")
+        imageEl.setAttribute("src", "./image/2.jpeg")
     } else if (currentNumOfGuesses === 3){
-        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/3.jpeg?raw=true")
+        imageEl.setAttribute("src", "./image/3.jpeg")
     } else if (currentNumOfGuesses === 4){
-        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/4.jpeg?raw=true")
+        imageEl.setAttribute("src", "./image/4.jpeg")
     } else if (currentNumOfGuesses === 5){
-        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/5.jpeg?raw=true")
+        imageEl.setAttribute("src", "./image/5.jpeg")
     } else if (currentNumOfGuesses === 6){
-        imageEl.setAttribute("src", "https://github.com/weklihua/Hangman/blob/main/image/6.jpeg?raw=true")
+        imageEl.setAttribute("src", "./image/6.jpeg")
     }
 }
 

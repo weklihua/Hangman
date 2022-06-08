@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0px;
+  padding: 0;
 }
 body {
   margin: 5px;
@@ -19,7 +19,6 @@ body {
 .cell:hover {
     background-color: antiquewhite;
 }
-
 .wide-cell {
   height: 50px;
   width: 100px;
