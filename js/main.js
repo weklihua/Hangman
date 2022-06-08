@@ -33,7 +33,7 @@ function init(){
     getSecretWordArrExclusive()
     win = null
     imageEl.setAttribute("src", "./image/0.jpeg")
-    messageEl.innerText = "Guess what animal I am!"
+    messageEl.innerText = "Guess what animal I am !"
     document.getElementById('alert').setAttribute('class', "alert alert-info")
     messageEl.style.color = 'rgb(98, 93, 93)'
     document.getElementById('answer').innerHTML = '&nbsp'
