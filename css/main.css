@@ -66,7 +66,7 @@ body {
 }
 
 img {
-  block-size: 100%;
+  block-size: 130%;
 }
 #guesses-board {
   display: flex;
@@ -85,3 +85,36 @@ img {
     cursor: pointer;
 }
 
+@media only screen and (max-width: 600px) {
+  #alert {
+    margin: 0;
+  }
+  #message {
+    margin: 0;
+  }
+  img {
+    block-size: 100%;
+  }
+  .col-sm-12.col-md-5 {
+    height:200px;
+  }
+  .cell {
+    height: 40px;
+    width: 40px;
+}
+.wide-cell {
+  height: 40px;
+  width: 80px;
+  display: inline-block;
+  border: 1px solid #888888;
+  border-radius: 15%;
+  text-align: center;
+}
+button {
+  float: right;
+}
+/* #keyboard {
+  width:320;
+} */
+
+}
