@@ -41,6 +41,8 @@ function init(){
     messageEl.innerText = "Guess what animal I am!"
     document.getElementById('alert').setAttribute('class', "alert alert-info")
     messageEl.style.color = 'rgb(98, 93, 93)'
+    document.getElementById('answer').innerHTML = '&nbsp'
+
 
 }
 
@@ -68,10 +70,12 @@ function isWinning(){
     }
     if (win === true){
         //console.log('Congratulations!')
-        messageEl.innerText = 'Congratulations, you won!'
+        messageEl.innerText = 'Congratulations , you won!'
         //messageEl.style.color = 'black'
         document.getElementById('alert').setAttribute('class', "alert alert-success")
         keyboard.removeEventListener('click', handleClick)
+        document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
+
     } else if (win === false){
         //console.log('loser!')
         messageEl.innerText = 'You lost, try again!'
