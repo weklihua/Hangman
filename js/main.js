@@ -37,7 +37,6 @@ function init(){
     document.getElementById('alert').setAttribute('class', "alert alert-info")
     messageEl.style.color = 'rgb(98, 93, 93)'
     document.getElementById('answer').innerHTML = '&nbsp'
-    //resetButton.innerText = 'RESET GAME'
 }
 
 function getCurrentWord(){
@@ -66,7 +65,6 @@ function isWinning(){
         document.getElementById('alert').setAttribute('class', "alert alert-success")
         keyboard.removeEventListener('click', handleClick)
         document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
-
     } else if (win === false){
         messageEl.innerText = 'You lost ,  try again!'
         document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
@@ -101,7 +99,6 @@ function generateKeyboard() {
     ALLOWED_LETTERS.forEach(function(letter) {
         const cell = document.createElement('div')
         cell.innerText = letter.toUpperCase()
-        //cell.classList.add('cell')  
         cell.setAttribute("class", "cell")
         cell.setAttribute("id", cell.innerText) 
         keyboard.appendChild(cell)
@@ -115,17 +112,18 @@ function generateKeyboard() {
 }
 
 function handleClick(evt){
+    //make clicked keys unclickable:
     if (chosenLetters.includes(evt.target.innerText)){
         return
     }
     if(evt.target.innerText === 'SPACE') {
         handleSpace()
         render()
-        evt.target.classList.add("unclickableSpace")
-    } else if (evt.target.getAttribute('id') !== 'keyboard' ) {
+        evt.target.classList.add("unclickableSpace") //--> change background color once clicked or hovered over
+    } else if (evt.target.getAttribute('id') !== 'keyboard' ) { //--> only keys on the keyboard are clickable
         updateCurrentGuess(evt.target.innerText)
         render()
-        evt.target.classList.add("unclickable")
+       evt.target.classList.add("unclickable")//--> change background color once clicked or hovered over
     }
 }
 
