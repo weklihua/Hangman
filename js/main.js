@@ -118,13 +118,13 @@ function isWinning(){
         win = false
     }
     if (win === true){
-        messageEl.innerText = 'Congratulations ,  you won!'
+        messageEl.innerText = 'Congratulations ,  you win !'
         messageEl.classList = "animate__animated animate__tada"
         document.getElementById('alert').setAttribute('class', "alert alert-success")
         keyboard.removeEventListener('click', handleClick)
         document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
     } else if (win === false){
-        messageEl.innerText = 'You lost ,  try again!'
+        messageEl.innerText = 'You lose ,  try again !'
         messageEl.classList = "animate__animated animate__hinge animate__slower animate__delay-1s"
         document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
         document.getElementById('alert').setAttribute('class', "alert alert-danger")
@@ -133,7 +133,6 @@ function isWinning(){
         return
     }
 }
-
 
 function updateCurrentGuess(letter) {
     currentGuess = letter

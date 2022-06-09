@@ -14,6 +14,7 @@ Link: https://weklihua.github.io/Hangman/
 
 ## Next Steps: 
 Add more comments to JS.
+Add various word banks.
 
 ## Pseudocode: 
 
