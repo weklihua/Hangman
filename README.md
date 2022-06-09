@@ -2,19 +2,22 @@
 
 Rules of Hangman: If a player makes a correct guess of the secret word within six guesses, the player wins; otherwise, the player loses.
 
-## Wireframe:
-
-<img width="316" alt="image" src="https://user-images.githubusercontent.com/105599499/172204230-33202a1f-7fb3-40ec-899d-026ae79215ed.png">
-
 ## Screenshot:
 
 <img width="714" alt="Screen Shot 2022-06-08 at 7 53 13 PM" src="https://user-images.githubusercontent.com/105599499/172756524-a3880140-049d-4141-88bd-e8f896093954.png">
- 
+
+## Technologies Used:
+JavaScript, HTML, CSS
+
+## Getting Started:
+Link: https://weklihua.github.io/Hangman/
+
+## Next Steps: 
+Add more comments to JS.
 
 ## Pseudocode: 
 
 ```
-Pseudocode: 
 1.	Define required constants:
 	1)	Define the maximum number of guesses
 	2)	Define the letters in keyboard
@@ -41,15 +44,19 @@ Pseudocode:
 			1.1.1)	Click the keyboard to select a letter and make a guess. If the letter is contained within the secret word, the letter will show up in the right position; if the letter is not contained within the secret word, the letter will not show up in current guess. 
 			1.1.2)	In both cases, the letter cannot be clicked again in the keyboard.
 		1.2)	Render the hangman:
-		1.1.1)	For each wrong letter guessed, each part of the hangman will appear in order: head, body, left arm, right arm, left leg, and right leg.
+			1.1.1)	For each wrong letter guessed, each part of the hangman will appear in order: head, body, left arm, right arm, left leg, and right leg.
 		1.3)	Handle a player clicking the replay button:
-		1.1.1)	Initialize the game again
+			1.1.1)	Initialize the game again
 
 ```
 
+## Wireframe:
+
+<img width="316" alt="image" src="https://user-images.githubusercontent.com/105599499/172204230-33202a1f-7fb3-40ec-899d-026ae79215ed.png">
 
 ## Helpful links:
 
 Examples of Hangman game: https://hangmanwordgame.com/?fca=1&success=0#/
+
 
 	
