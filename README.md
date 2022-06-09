@@ -57,7 +57,6 @@ Add various word banks.
 
 ## Helpful links:
 <ul>
-  <li>Examples of Hangman game: https://hangmanwordgame.com/?fca=1&success=0#/</li>
   <li>Animation: https://animate.style/
 </li>
   <li>Bootswatch: https://bootswatch.com/
