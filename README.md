@@ -56,8 +56,20 @@ Add various word banks.
 <img width="316" alt="image" src="https://user-images.githubusercontent.com/105599499/172204230-33202a1f-7fb3-40ec-899d-026ae79215ed.png">
 
 ## Helpful links:
+<ul>
+  <li>Examples of Hangman game: https://hangmanwordgame.com/?fca=1&success=0#/</li>
+  <li>Animation: https://animate.style/
+</li>
+  <li>Bootswatch: https://bootswatch.com/
+</li>
+  <li>Wireframe Figma: https://www.figma.com/
+</li>
+</ul>
 
-Examples of Hangman game: https://hangmanwordgame.com/?fca=1&success=0#/
+
+
+
+
 
 
 	

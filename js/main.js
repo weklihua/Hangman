@@ -48,6 +48,7 @@ function handleClick(evt){
     if (chosenLetters.includes(evt.target.innerText)){
         return
     }
+    //click 'space'
     if(evt.target.innerText === 'SPACE') {
         handleSpace()
         render()
