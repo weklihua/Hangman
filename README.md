@@ -13,8 +13,12 @@ JavaScript, HTML, CSS
 Link: https://weklihua.github.io/Hangman/
 
 ## Next Steps: 
-Add more comments to JS.
-Add various word banks.
+<ul>
+  <li>Add more comments to JS.
+</li>
+  <li>Add various word banks.
+</li>
+</ul>
 
 ## Pseudocode: 
 
