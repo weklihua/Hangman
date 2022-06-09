@@ -88,9 +88,11 @@ img {
 @media only screen and (max-width: 600px) {
   #alert {
     margin: 0;
+    height: 10%;
   }
   #message {
     margin: 0;
+    font-size: larger;
   }
   img {
     block-size: 100%;
@@ -101,20 +103,41 @@ img {
   .cell {
     height: 40px;
     width: 40px;
-}
-.wide-cell {
-  height: 40px;
-  width: 80px;
-  display: inline-block;
-  border: 1px solid #888888;
-  border-radius: 15%;
-  text-align: center;
-}
-button {
-  float: right;
-}
-/* #keyboard {
-  width:320;
-} */
+  }
+  .wide-cell {
+    height: 40px;
+    width: 80px;
+  }
+  button {
+    position: fixed; 
+    bottom:2%;
+    right:5%;
+    block-size: 5%;
+  }
+  /* #keyboard {
+    width:320;
+  } */
+  html, body {
+    height:100%;
+  }
+  .container {
+    width: 100%;
+    height: 100%;
+    /* align-content:stretch; */
+    
+  }
+  #whole-row {
+    /* width: 100%; */
+    height: 90%;
+    align-content:stretch;
+  }
+  #keyboard-row {
+    width:100%;
+    /* padding:2px; */
+    /* justify-content:center; */
+  }
+  #keyboard {
+    padding:0;
+  }
 
 }
