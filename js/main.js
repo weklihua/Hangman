@@ -34,44 +34,25 @@ function init(){
     win = null
     imageEl.setAttribute("src", "./image/0.jpeg")
     messageEl.innerText = "Guess what animal I am !"
+    messageEl.classList = "animate__animated animate__bounceInLeft"
     document.getElementById('alert').setAttribute('class', "alert alert-info")
     messageEl.style.color = 'rgb(98, 93, 93)'
     document.getElementById('answer').innerHTML = '&nbsp'
 }
 
-function getCurrentWord(){
-    for(i=0; i<secretWord.length; i++){
-        currentWord.push('')
-    }
-}
-function getSecretWordArrExclusive(){
-    secretWordArrExclusive = secretWordArr.map(function(value){
-        if (value === ' '){
-            return ''
-        }
-        return value
-    })   
-}
-function isWinning(){
-    if(currentWord.toString() === secretWordArrExclusive.toString()) {
-        win = true
-    } else if (currentNumOfGuesses < MAX_GUESSES){
+function handleClick(evt){
+    //make clicked keys unclickable:
+    if (chosenLetters.includes(evt.target.innerText)){
         return
-    } else if (currentNumOfGuesses >= MAX_GUESSES){
-        win = false
     }
-    if (win === true){
-        messageEl.innerText = 'Congratulations ,  you won!'
-        document.getElementById('alert').setAttribute('class', "alert alert-success")
-        keyboard.removeEventListener('click', handleClick)
-        document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
-    } else if (win === false){
-        messageEl.innerText = 'You lost ,  try again!'
-        document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
-        document.getElementById('alert').setAttribute('class', "alert alert-danger")
-        keyboard.removeEventListener('click', handleClick)
-    } else if (win === null) {
-        return
+    if(evt.target.innerText === 'SPACE') {
+        handleSpace()
+        render()
+        evt.target.classList.add("unclickableSpace") //--> change background color once clicked or hovered over
+    } else if (evt.target.getAttribute('id') !== 'keyboard' ) { //--> only keys on the keyboard are clickable
+        updateCurrentGuess(evt.target.innerText)
+        render()
+        evt.target.classList.add("unclickable")//--> change background color once clicked or hovered over
     }
 }
 function generateLine(){
@@ -111,21 +92,45 @@ function generateKeyboard() {
     keyboard.appendChild(spaceCell)
 }
 
-function handleClick(evt){
-    //make clicked keys unclickable:
-    if (chosenLetters.includes(evt.target.innerText)){
-        return
-    }
-    if(evt.target.innerText === 'SPACE') {
-        handleSpace()
-        render()
-        evt.target.classList.add("unclickableSpace") //--> change background color once clicked or hovered over
-    } else if (evt.target.getAttribute('id') !== 'keyboard' ) { //--> only keys on the keyboard are clickable
-        updateCurrentGuess(evt.target.innerText)
-        render()
-       evt.target.classList.add("unclickable")//--> change background color once clicked or hovered over
+function getCurrentWord(){
+    //current guess
+    for(i=0; i<secretWord.length; i++){
+        currentWord.push('')
     }
 }
+function getSecretWordArrExclusive(){
+    secretWordArrExclusive = secretWordArr.map(function(value){
+        if (value === ' '){
+            return ''
+        }
+        return value
+    })   
+}
+function isWinning(){
+    if(currentWord.toString() === secretWordArrExclusive.toString()) {
+        win = true
+    } else if (currentNumOfGuesses < MAX_GUESSES){
+        return
+    } else if (currentNumOfGuesses >= MAX_GUESSES){
+        win = false
+    }
+    if (win === true){
+        messageEl.innerText = 'Congratulations ,  you won!'
+        messageEl.classList = "animate__animated animate__tada"
+        document.getElementById('alert').setAttribute('class', "alert alert-success")
+        keyboard.removeEventListener('click', handleClick)
+        document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
+    } else if (win === false){
+        messageEl.innerText = 'You lost ,  try again!'
+        messageEl.classList = "animate__animated animate__hinge animate__slower"
+        document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
+        document.getElementById('alert').setAttribute('class', "alert alert-danger")
+        keyboard.removeEventListener('click', handleClick)
+    } else if (win === null) {
+        return
+    }
+}
+
 
 function updateCurrentGuess(letter) {
     currentGuess = letter

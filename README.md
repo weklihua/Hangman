@@ -1,6 +1,6 @@
 # Game: Hangman
 
-Rules of Hangman: If a player makes a correct guess of the secret word within six guesses, the player wins; otherwise, the player loses.
+Rules of Hangman: Upon loading, the game will randomly generate a secret word from a chosen word bank. The player will guess what it is one letter at a time. If the player makes a correct guess, the letter will appear in the right places on the guess board. If the player makes a wrong guess, a part of the hangman’s body will appear. If the whole body shows up before the player make a correct guess of the secret word, the player loses. The maximum number of wrong guesses is six.
 
 ## Screenshot:
 
