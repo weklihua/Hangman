@@ -16,6 +16,9 @@ const imageEl = document.querySelector("img")
 
 /*----- event listeners -----*/
 resetButton.addEventListener('click', init)
+keyboard.addEventListener('mouseover',(evt)=> {
+    evt.target.classList.add("animate__animated", "animate__pulse");
+} )
 
 /*----- functions -----*/
 init()
@@ -122,7 +125,7 @@ function isWinning(){
         document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
     } else if (win === false){
         messageEl.innerText = 'You lost ,  try again!'
-        messageEl.classList = "animate__animated animate__hinge animate__slower"
+        messageEl.classList = "animate__animated animate__hinge animate__slower animate__delay-1s"
         document.getElementById('answer').innerText = 'ANSWER: ' + secretWord.toUpperCase()
         document.getElementById('alert').setAttribute('class', "alert alert-danger")
         keyboard.removeEventListener('click', handleClick)
